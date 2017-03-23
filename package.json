@@ -1,0 +1,22 @@
+{
+  "name": "AppDevLevels-Summarizer",
+  "version": "0.0.1",
+  "description": "Summarize AppDevLevels data from multiple Excel files.",
+  "main": "./index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Excel"
+  ],
+  "repository": {
+    "type": "git"
+  },
+  "readmeFilename": "README.md",
+  "author": "Fusion Alliance",
+  "license": "MIT",
+  "dependencies": {
+    "yargs": "^7.0.2"
+  }
+}
