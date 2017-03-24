@@ -3,6 +3,8 @@
 const fs = require('fs');
 const path = require('path');
 
+const constants = require('./constants');
+
 function getExtension(filename) {
   return filename.slice((filename.lastIndexOf('.') - 1 >>> 0) + 2);
 };
@@ -11,38 +13,27 @@ function getFullFilename(directoryName, filename) {
   return path.join(directoryName, filename);
 };
 
-function isProcessableFile(directoryName, filename) {
-  let fullFilename = getFullFilename(directoryName, filename);
-  console.log(`Evaluating '${fullFilename}'`);
-  return fs.statSync(fullFilename).isFile() && (getExtension(filename) === 'xlsx');
+function getFullFilenames(directoryName) {
+  let filenames = fs.readdirSync(directoryName);
+  filenames.forEach((value, index, array) => {
+    array[index] = getFullFilename(directoryName, value);
+  });
+  return filenames;
+};
+
+function isProcessableFile(filename) {
+  console.log(`Evaluating '${filename}'`);
+  return fs.statSync(filename).isFile()
+    && (getExtension(filename).toLowerCase() === constants.workbookFileExtension);
 };
 
 function getFilenames(directoryName) {
-  let rejectionReason = null;
-  let fullFilenames = [];
-  let promise = new Promise((resolve, reject) => {
-    try {
-      fullFilenames = (() => {
-        let filenames = fs.readdirSync(directoryName)
-          .filter((filename) => isProcessableFile(directoryName, filename));
-        filenames.forEach((value, index, array) => {
-          array[index] = getFullFilename(directoryName, value);
-        });
-        return filenames;
-      })();
-    }
-    catch (err) {
-      rejectionReason = err;
-    }
-
-    if (rejectionReason) {
-      reject(rejectionReason);
-    } else {
-      resolve(fullFilenames);
-    }
+  let promise = new Promise((resolve) => {
+    let filenames = getFullFilenames(directoryName).filter(isProcessableFile);
+    resolve(filenames);
   });
 
   return promise;
 };
 
-module.exports.execute = getFilenames;
+module.exports = getFilenames;

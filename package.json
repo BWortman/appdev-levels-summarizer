@@ -8,7 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "Excel"
+    "Excel",
+    "AppDevLevels",
+    "AppDev"
   ],
   "repository": {
     "type": "git"
