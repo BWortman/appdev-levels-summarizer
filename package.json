@@ -17,6 +17,7 @@
   "author": "Fusion Alliance",
   "license": "MIT",
   "dependencies": {
+    "exceljs": "^0.4.2",
     "yargs": "^7.0.2"
   }
 }
