@@ -2,7 +2,6 @@
 
 function summarizeData(parsedItemsCollection) {
   let summary = null;
-  let sampleCount = parsedItemsCollection.length;
   parsedItemsCollection.forEach((parsedItems) => {
     if (!summary) {
       summary = parsedItems;
@@ -14,8 +13,7 @@ function summarizeData(parsedItemsCollection) {
     };
   });
 
-  console.log('sample count = ' + sampleCount);
-  console.log(JSON.stringify(summary));
+  return summary;
 };
 
 module.exports = summarizeData;
