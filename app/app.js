@@ -4,19 +4,7 @@ const process = require('process');
 
 const constants = require('./constants');
 const getFilenames = require('./getFilenames');
-const parseWorkbook = require('./parseWorkbook');
-const summarizeData = require('./summarizeData');
-
-function processFiles(filenames) {
-  let promises = [];
-  filenames.forEach((filename) => {
-    promises.push(parseWorkbook(filename));
-  });
-  Promise.all(promises)
-    .then((parsedItemsCollection) => {
-      summarizeData(parsedItemsCollection);
-    });
-};
+const processFiles = require('./processFiles');
 
 function execute(argv) {
   console.log(`Source directory = '${argv.src}', target file = '${argv.targ}'`);
