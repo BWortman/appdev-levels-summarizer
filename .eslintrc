@@ -1,0 +1,29 @@
+{
+  "env": {
+    "es6": true,
+    "node": true
+  },
+
+  "extends": ["eslint:recommended", "google"],
+
+  "parserOptions": {
+    "sourceType": "script"
+  },
+
+  "rules": {
+    "arrow-parens": ["error", "always"],
+    "comma-dangle": ["error", "only-multiline"],
+    "indent": ["error", 2],
+    "linebreak-style": [ "error", "unix" ],
+    "max-len": ["error", 110, 2],
+    "require-jsdoc": "off",
+    "no-use-before-define": ["error",
+      {
+        "functions": false,
+        "classes": true
+      }
+    ],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"]
+  }
+}

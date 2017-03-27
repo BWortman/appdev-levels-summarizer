@@ -1,7 +1,7 @@
 'use strict';
 
-const app = require('./app/app');
-const constants = require('./app/constants');
+const app = require('./app');
+const constants = require('./constants');
 
 const argv = require('yargs')
   .usage('Usage: $0 -src -targ')

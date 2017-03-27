@@ -20,34 +20,34 @@ const fontColor = {
 
 function calculateBackgroundColor(itemValue) {
   switch (itemValue) {
-    case null:
-      return backgroundColor.sectionHeading;
-    case 0:
-      return backgroundColor.alarm;
-    case 1:
-      return backgroundColor.weakValue;
-    case 2:
-      return backgroundColor.normalValue;
-    case 3:
-      return backgroundColor.strongValue;
-    default:
-      throw new Error(`Unexpected value '${item.itemValue}'`);
+  case null:
+    return backgroundColor.sectionHeading;
+  case 0:
+    return backgroundColor.alarm;
+  case 1:
+    return backgroundColor.weakValue;
+  case 2:
+    return backgroundColor.normalValue;
+  case 3:
+    return backgroundColor.strongValue;
+  default:
+    throw new Error(`Unexpected value '${itemValue}'`);
   }
-};
+}
 
 function calculateNameColumnAddress(rowIndex) {
-  return `'${columnAddressLabels.name}${rowIndex}'`
-};
+  return `'${columnAddressLabels.name}${rowIndex}'`;
+}
 
 function calculateValueColumnAddress(rowIndex) {
-  return `'${columnAddressLabels.value}${rowIndex}'`
-};
+  return `'${columnAddressLabels.value}${rowIndex}'`;
+}
 
 function setFill(cell, cellBackgroundColor) {
   cell.fill = {
     type: 'pattern',
     pattern: 'solid',
-    bgColor: { argb: cellBackgroundColor }
+    bgColor: {argb: cellBackgroundColor}
   };
 }
 
@@ -55,7 +55,7 @@ function addHeader(worksheet) {
   const headerRowIndex = 1;
   const headerFont = {
     bold: true,
-    color: { argb: fontColor.sheetHeading }
+    color: {argb: fontColor.sheetHeading}
   };
 
   worksheet.addRow(['Area', 'Score']);
@@ -66,7 +66,7 @@ function addHeader(worksheet) {
   setFill(nameCell, backgroundColor.sheetHeading);
   valueCell.font = headerFont;
   setFill(valueCell, backgroundColor.sheetHeading);
-};
+}
 
 function addRows(worksheet, summarizedItems) {
   summarizedItems.forEach((item, index) => {
@@ -83,18 +83,18 @@ function addRows(worksheet, summarizedItems) {
       setFill(worksheet.getCell(nameColumnAddress), cellBackgroundColor);
     } else {
       setFill(worksheet.getCell(valueColumnAddress), cellBackgroundColor);
-    };
+    }
   });
-};
+}
 
 function setColumnWidths(worksheet) {
   const nameColumnWidth = 50;
   worksheet.getColumn(columnAddressLabels.name).width = nameColumnWidth;
-};
+}
 
 function writeData(filename, summarizedItems) {
   if (summarizedItems.length < 1) {
-    console.info('No data available for output.');
+    console.info('No data available for output.'); // eslint-disable-line no-console
     return;
   }
 
@@ -106,6 +106,6 @@ function writeData(filename, summarizedItems) {
   setColumnWidths(worksheet);
 
   return workbook.xlsx.writeFile(filename);
-};
+}
 
 module.exports = writeData;

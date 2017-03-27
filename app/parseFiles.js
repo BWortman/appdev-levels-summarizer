@@ -20,7 +20,7 @@ function parseFiles(filenames) {
             return parseWorkbook(filenames[index]);
           });
       })(i));
-    };
+    }
 
     promiseChain = promiseChain
       .then((parsedItems) => {
@@ -30,6 +30,6 @@ function parseFiles(filenames) {
   });
 
   return outerPromise;
-};
+}
 
 module.exports = parseFiles;

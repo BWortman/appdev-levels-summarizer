@@ -6,14 +6,13 @@ function summarizeData(parsedItemsCollection) {
   parsedItemsCollection.forEach((parsedItems, index) => {
     if (index === 0) {
       summarizedItems = parsedItems;
-    }
-    else {
+    } else {
       parsedItems.forEach((item, itemIndex) => {
         if (item.itemValue !== null) {
           summarizedItems[itemIndex].itemValue += item.itemValue;
         }
       });
-    };
+    }
   });
 
   summarizedItems.forEach((item, index, array) => {
@@ -22,6 +21,6 @@ function summarizeData(parsedItemsCollection) {
   });
 
   return summarizedItems;
-};
+}
 
 module.exports = summarizeData;

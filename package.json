@@ -2,9 +2,10 @@
   "name": "AppDevLevels-Summarizer",
   "version": "0.0.1",
   "description": "Summarize AppDevLevels data from multiple Excel files.",
-  "main": "./index.js",
+  "main": "./app/index.js",
   "scripts": {
-    "start": "node ./index.js",
+    "lint": "eslint \"app/**/*.js\"",
+    "start": "node ./app/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -21,5 +22,9 @@
   "dependencies": {
     "exceljs": "^0.4.2",
     "yargs": "^7.0.2"
+  },
+  "devDependencies": {
+    "eslint": "3.11.1",
+    "eslint-config-google": "0.7.1"
   }
 }
