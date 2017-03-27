@@ -1,11 +1,12 @@
 'use strict';
 
 const app = require('./app/app');
+const constants = require('./app/constants');
 
 const argv = require('yargs')
   .usage('Usage: $0 -src -targ')
-  .default('src', './')
-  .default('targ', './xsum_out.xlsx')
+  .default('src', constants.sourceDirectoryName)
+  .default('targ', constants.targetFilename)
   .alias('src', 'source')
   .describe('src', 'Source directory name')
   .alias('targ', 'target')

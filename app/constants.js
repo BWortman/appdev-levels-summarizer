@@ -2,8 +2,7 @@
 
 module.exports = {
   errorProcessExitCode: 1,
+  sourceDirectoryName: './',
+  targetFilename: './xsum_out.xlsx',
   workbookFileExtension: 'xlsx',
-  evalWorksheetIndex: 1,
-  worksheetNameColumnIndex: 1,
-  worksheetValueColumnIndex: 2
 };

@@ -2,26 +2,30 @@
 
 const Excel = require('exceljs');
 
-const constants = require('./constants');
-
 function parseRows(worksheet) {
+  const evalWorksheetHeaderRowCount = 3;
+  const evalWorksheetNameColumnIndex = 1;
+  const evalWorksheetValueColumnIndex = 2;
   let parsedItems = [];
-  worksheet.eachRow({ includeEmpty: true }, (row, rowNumber) => {
+
+  worksheet.eachRow({ includeEmpty: true }, (row) => {
     parsedItems.push({
-      itemName: row.getCell(constants.worksheetNameColumnIndex).value,
-      itemValue: row.getCell(constants.worksheetValueColumnIndex).value
+      itemName: row.getCell(evalWorksheetNameColumnIndex).value,
+      itemValue: row.getCell(evalWorksheetValueColumnIndex).value
     });
   });
-  return parsedItems;
+  return parsedItems.slice(evalWorksheetHeaderRowCount);
 };
 
 function parseWorkbook(filename) {
+  const evalWorksheetIndex = 1;
   let workbook = new Excel.Workbook();
+
   console.log(`Opening '${filename}'`);
   return workbook.xlsx.readFile(filename)
     .then(() => {
       console.log(`Processing '${filename}'`);
-      let worksheet = workbook.getWorksheet(constants.evalWorksheetIndex);
+      let worksheet = workbook.getWorksheet(evalWorksheetIndex);
       return parseRows(worksheet);
     });
 };

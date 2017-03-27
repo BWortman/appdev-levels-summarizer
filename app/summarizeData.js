@@ -1,19 +1,27 @@
 'use strict';
 
 function summarizeData(parsedItemsCollection) {
-  let summary = null;
-  parsedItemsCollection.forEach((parsedItems) => {
-    if (!summary) {
-      summary = parsedItems;
+  const sampleSize = parsedItemsCollection.length;
+  let summarizedItems = [];
+  parsedItemsCollection.forEach((parsedItems, index) => {
+    if (index === 0) {
+      summarizedItems = parsedItems;
     }
     else {
       parsedItems.forEach((item, itemIndex) => {
-        summary[itemIndex].itemValue += item.itemValue;
+        if (item.itemValue !== null) {
+          summarizedItems[itemIndex].itemValue += item.itemValue;
+        }
       });
     };
   });
 
-  return summary;
+  summarizedItems.forEach((item, index, array) => {
+    array[index].itemValue =
+      item.itemValue === null ? null : Math.floor(item.itemValue / sampleSize);
+  });
+
+  return summarizedItems;
 };
 
 module.exports = summarizeData;
