@@ -53,7 +53,7 @@ npm start
 To run the app using a specified source directory and target output file:
 
 ```bash
-node ./index.js "--src=C:/Users/brian/Desktop/evals" "--targ=./levels-summary.xlsx"
+node ./app/index.js "--src=C:/Users/brian/Desktop/evals" "--targ=./levels-summary.xlsx"
 ```
 
 ## Troubleshooting
